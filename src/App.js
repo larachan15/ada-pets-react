@@ -23,12 +23,20 @@ class App extends Component {
   onSelectedPet = (id) => {
     const pet = this.state.petList.find(pet => pet.id === id)
 
-    this.setState ({
+    this.setState({
       currentPet: pet
     })
   }
 
+  onDeletePet = (id) => {
+    let revisedPetList = this.state.petList
+    const petIndex = revisedPetList.find(pet => pet.id === id)
 
+    revisedPetList.splice(petIndex, 1);
+    this.setState({
+      petList: revisedPetList
+    })
+  }
 
   render() {
     const { currentPet } = this.state;
@@ -50,7 +58,9 @@ class App extends Component {
           {petDetails}
         <section className="pet-list-wrapper">
           <PetList pets={this.state.petList}
-                   SelectedPet={this.onSelectedPet}/>
+                   SelectedPet={this.onSelectedPet}
+                   DeletePet={this.onDeletePet}
+                   />
         </section>
         <section className="new-pet-form-wrapper">
           { /* Wave 3:  Where NewPetForm should appear */ }
