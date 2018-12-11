@@ -8,7 +8,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const PetList = (props) => {
   const petList = props.pets.map((pet) => {
     return <PetCard key={pet.id}
-                {...pet} />
+                    {...pet}
+                    onSelectedPetCallback={props.SelectedPet}
+                 />
             });
 
   return (
