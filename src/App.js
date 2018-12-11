@@ -38,6 +38,21 @@ class App extends Component {
     })
   }
 
+  onAddPet = (newPet) => {
+    const pets = this.state.petList
+    newPet.id = pets[pets.length - 1].id + 1
+    pets.push(newPet);
+
+    if (newPet.petName === "") {
+      console.log("Please enter a name");
+    }
+    else {
+      this.setState({
+        pets: pets
+      })
+    }
+  }
+
   render() {
     const { currentPet } = this.state;
     // petDetails will start out as an empty string. if currentPet is not undefined, then petDetails will be the pet currently selected.
@@ -63,7 +78,7 @@ class App extends Component {
                    />
         </section>
         <section className="new-pet-form-wrapper">
-          { /* Wave 3:  Where NewPetForm should appear */ }
+          <NewPetForm addPetCallback={this.onAddPet} />
         </section>
       </main>
     );
